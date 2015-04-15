@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Pong</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    </head>
+    <body class="center">
+        <canvas id="canvas"></canvas>
+        
+        <br>
+        <!-- imgs -->
+        <img id="powerup" class="hidden" src="img/powerups.png" alt="PowerUps"/>
+        <img id="ball" class="hidden" src="img/ball.png" alt="Ball"/>
+        <img id="pow" class="hidden" src="img/hit.png" alt="Pow"/>
+        <img id="paddle" class="hidden" src="img/paddle.png" alt="Paddle"/>
+        <img id="paddle2" class="hidden" src="img/paddle2.png" alt="Paddle2"/>
+        
+        <!-- js -->
+        <script type="text/javascript" src="classes/paddle.js"></script>
+        <script type="text/javascript" src="classes/powerup.js"></script>
+        <script type="text/javascript" src="classes/player.js"></script>
+        <script type="text/javascript" src="classes/ball.js"></script>
+        <script type="text/javascript" src="classes/menu.js"></script>
+        <script type="text/javascript" src="classes/item.js"></script>
+        <script type="text/javascript" src="classes/pow.js"></script>
+        <script type="text/javascript" src="AIs/ai_area_middle_v3.js"></script>
+        <!--script type="text/javascript" src="AIs/ai_center.js"></script>
+        <script type="text/javascript" src="AIs/ai_center_middle.js"></script>
+        <script type="text/javascript" src="AIs/ai_area.js"></script>
+        <script type="text/javascript" src="AIs/ai_area_middle.js"></script>
+        <script type="text/javascript" src="AIs/ai_area_v2.js"></script>
+        <script type="text/javascript" src="AIs/ai_area_middle_v2.js"></script-->
+        
+        
+        <script type="text/javascript" src="scenes/game.js"></script>
+        <script type="text/javascript" src="scenes/menu.js"></script>
+        <script type="text/javascript" src="keyboard.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>

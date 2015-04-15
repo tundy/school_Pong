@@ -1,0 +1,24 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+
+#canvas {
+    border: black solid 1px;
+    background: #fff;
+}
+
+body {
+    background: #666;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
