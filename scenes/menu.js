@@ -1,4 +1,4 @@
-/* global keyboard, UP, DOWN, ENTER, context, canvas, LEFT, RIGHT */
+/* global keyboard, UP, DOWN, ENTER, context, canvas, LEFT, RIGHT, KEY_W, KEY_S, KEY_A, KEY_A, KEY_D */
 
 function Menu(title) {
     this.title = title;
@@ -22,7 +22,7 @@ Menu.prototype.update = function(delta) {
     }
     else
     {
-        if(keyboard[UP])
+        if(keyboard[UP] || keyboard[KEY_W])
         {
             this.selected--;
             if(this.selected < 0)
@@ -32,14 +32,14 @@ Menu.prototype.update = function(delta) {
             this.moved = true;
             this.time = 0;
         }
-        if(keyboard[DOWN])
+        if(keyboard[DOWN] || keyboard[KEY_S])
         {
             this.selected++;
             this.selected %= this.items.length;
             this.moved = true;
             this.time = 0;
         }
-        if(keyboard[ENTER] || keyboard[LEFT] || keyboard[RIGHT])
+        if(keyboard[ENTER] || keyboard[LEFT] || keyboard[RIGHT] || keyboard[KEY_A] || keyboard[KEY_D])
         {
             this.moved = true;
             this.time = 0;

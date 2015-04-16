@@ -63,11 +63,11 @@ Game.prototype.goal = function() {
     }
     
     // Bottom side
-    if(settings[2][0] === "AreaMiddleV3")
+    if(settings[2][1] === "AreaMiddleV3")
     {
         this.playground.push(new AiAreaMiddleV3(1));
     }
-    else if(settings[2][0] === "AreaMiddleFastball")
+    else if(settings[2][1] === "AreaMiddleFastball")
     {
         this.playground.push(new AiAreaMiddleFastball(1));
     }

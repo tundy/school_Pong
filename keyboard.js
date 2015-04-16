@@ -10,14 +10,16 @@ var DOWN = 40;
 var ESC = 27;
 
 var ENTER = 13;
+var KEY_W = 87;
 var KEY_A = 65;
-var KEY_B = 68;
+var KEY_S = 83;
+var KEY_D = 68;
 
 /*document.addEventListener("keydown", keyDown, false);
 document.addEventListener("keyup", keyUp, false);*/
 document.addEventListener("onblur", keyboardClear, false);
 
-//<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>        
+//<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 $(window).blur(function(){
     keyboardClear();
     window.cancelAnimationFrame(playing);
@@ -29,7 +31,6 @@ $(window).focus(function() {
         lastUpdate = Date.now();
     }
 });
-
 
 function keyboardClear() {
     keyboard = [];

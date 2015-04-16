@@ -1,4 +1,4 @@
-/* global keyboard, ENTER, settings, LEFT, canvas */
+/* global keyboard, ENTER, settings, LEFT, canvas, KEY_A */
 
 function NewGame() {
     if(!keyboard[ENTER]) {
@@ -9,7 +9,7 @@ function NewGame() {
 }
 
 function TopSideEdit(item) {
-    if(keyboard[LEFT]) {
+    if(keyboard[LEFT] || keyboard[KEY_A]) {
         switch(settings[2][0]) {
             case "AreaMiddleV3":
                 settings[2][0] = "Player";
@@ -38,7 +38,7 @@ function TopSideEdit(item) {
 }
 
 function BottomSideEdit(item) {
-    if(keyboard[LEFT]) {
+    if(keyboard[LEFT] || keyboard[KEY_A]) {
         switch(settings[2][1]) {
             case "AreaMiddleV3":
                 settings[2][1] = "Player";
@@ -67,7 +67,7 @@ function BottomSideEdit(item) {
 }
 
 function EditScore(item) {
-    if(keyboard[LEFT]) {
+    if(keyboard[LEFT] || keyboard[KEY_A]) {
         if(--settings[3] <= 0)
         settings[3] = 10;
     } else {
