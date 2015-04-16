@@ -9,12 +9,60 @@ function NewGame() {
 }
 
 function TopSideEdit(item) {
-    settings[2][0] = (settings[2][0] === "bot") ? "player" : "bot";
+    if(keyboard[LEFT]) {
+        switch(settings[2][0]) {
+            case "AreaMiddleV3":
+                settings[2][0] = "Player";
+                break;
+            case "AreaMiddleFastball":
+                settings[2][0] = "AreaMiddleV3";
+                break;
+            default:
+                settings[2][0] = "AreaMiddleFastball";
+                break;
+        }
+    } else {
+        switch(settings[2][0]) {
+            case "AreaMiddleV3":
+                settings[2][0] = "AreaMiddleFastball";
+                break;
+            case "AreaMiddleFastball":
+                settings[2][0] = "Player";
+                break;
+            default:
+                settings[2][0] = "AreaMiddleV3";
+                break;
+        }
+    }
     item.text = "Top side: " + settings[2][0];
 }
 
 function BottomSideEdit(item) {
-    settings[2][1] = (settings[2][1] === "bot") ? "player" : "bot";
+    if(keyboard[LEFT]) {
+        switch(settings[2][1]) {
+            case "AreaMiddleV3":
+                settings[2][1] = "Player";
+                break;
+            case "AreaMiddleFastball":
+                settings[2][1] = "AreaMiddleV3";
+                break;
+            default:
+                settings[2][1] = "AreaMiddleFastball";
+                break;
+        }
+    } else {
+        switch(settings[2][1]) {
+            case "AreaMiddleV3":
+                settings[2][1] = "AreaMiddleFastball";
+                break;
+            case "AreaMiddleFastball":
+                settings[2][1] = "Player";
+                break;
+            default:
+                settings[2][1] = "AreaMiddleV3";
+                break;
+        }
+    }
     item.text = "Bottom side: " + settings[2][1];
 }
 

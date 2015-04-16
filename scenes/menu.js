@@ -58,19 +58,19 @@ Menu.prototype.draw = function() {
     }
     
     var image = document.getElementById("ball");
-    context.drawImage(image, 8, (this.selected * 25)+30 + 8, 21, 21);
+    context.drawImage(image, 8, (this.selected * 20)+30 + 8, 16, 16);
     
     context.font="30px Courier New";
     context.fillStyle = 'Green';
     context.fillText(this.title, 8, 30);
     
-    context.font="25px Courier New";
+    context.font="20px Courier New";
     context.fillStyle = 'Black';
     for(var i in this.items) {
-        context.fillText(this.items[i].text, 42, 25*i+55);
+        context.fillText(this.items[i].text, 32, 20*i+55);
     }
     context.fillStyle = 'Green';
     for(var i in this.extra) {
-        context.fillText(this.extra[i], 8, canvas.height-25*i-8);
+        context.fillText(this.extra[i], 8, canvas.height-20*i-8);
     }
 };

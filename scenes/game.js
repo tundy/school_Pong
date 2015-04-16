@@ -49,9 +49,13 @@ Game.prototype.goal = function() {
     this.playground = [];
     
     // Top side
-    if(settings[2][0] === "bot")
+    if(settings[2][0] === "AreaMiddleV3")
     {
         this.playground.push(new AiAreaMiddleV3(0));
+    }
+    else if(settings[2][0] === "AreaMiddleFastball")
+    {
+        this.playground.push(new AiAreaMiddleFastball(0));
     }
     else
     {
@@ -59,9 +63,13 @@ Game.prototype.goal = function() {
     }
     
     // Bottom side
-    if(settings[2][1] === "bot")
+    if(settings[2][0] === "AreaMiddleV3")
     {
         this.playground.push(new AiAreaMiddleV3(1));
+    }
+    else if(settings[2][0] === "AreaMiddleFastball")
+    {
+        this.playground.push(new AiAreaMiddleFastball(1));
     }
     else
     {
