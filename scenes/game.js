@@ -9,7 +9,6 @@ function Game() {
     this.playground = [];
     
     this.background = document.getElementById("gameGB");
-    this.color = "White";
 }
 
 Game.prototype.FindPaddleTop = function() {
@@ -35,9 +34,17 @@ Game.prototype.FindPaddleBottom = function() {
 };
 
 Game.prototype.goal = function() {
-    var colours = ["Chartreuse", "Chocolate", "Coral", "DarkGoldenRod", "DarkKhaki", "Khaki", "LightGoldenRodYellow", "NavajoWhite", "Peru", "SandyBrown", "Wheat"];
+    
+    var colours = ["Chocolate", "Coral", "DarkGoldenRod", "DarkKhaki", "Khaki", "LightGoldenRodYellow", "NavajoWhite", "Peru", "SandyBrown", "Wheat"];
     var x = Math.floor(Math.random()*colours.length+0.1);
-    this.color = colours[x];
+    var color = colours[x];
+    //console.log(color, canvas.style.backgroundColor);
+    while(color === canvas.style.backgroundColor ) {
+        x = Math.floor(Math.random()*colours.length+0.1);
+        color = colours[x];
+        //console.log(color, canvas.style.backgroundColor);
+    }
+    canvas.style.background = color;
     
     this.playground = [];
     
@@ -102,6 +109,7 @@ Game.prototype.draw = function() {
     
     if(this.ScoreUp >= settings[3] || this.ScoreDown >= settings[3])
     {
+        canvas.style.background = "White";
         context.font="25px Georgia";
         context.fillStyle = 'Green';
         if(this.ScoreUp > this.ScoreDown)
@@ -115,8 +123,8 @@ Game.prototype.draw = function() {
         return;
     }
     
-    context.fillStyle = this.color;
-    context.fillRect(0,0,canvas.width,canvas.height);
+    /*context.fillStyle = this.color;
+    context.fillRect(0,0,canvas.width,canvas.height);*/
     
     context.strokeStyle = 'White';
     context.lineWidth = 10;

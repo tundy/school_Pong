@@ -1,4 +1,4 @@
-/* global keyboard, UP, DOWN, ENTER, context, canvas */
+/* global keyboard, UP, DOWN, ENTER, context, canvas, LEFT, RIGHT */
 
 function Menu(title) {
     this.title = title;
