@@ -1,4 +1,4 @@
-/* global Paddle, context, canvas, keyboard, playground */
+/* global canvas, Paddle */
 
 function AiAreaV2(side)
 {
@@ -9,49 +9,54 @@ function AiAreaV2(side)
 
 AiAreaV2.prototype = Object.create(Paddle.prototype);
 
-AiAreaV2.prototype.update = function(delta)
+AiAreaV2.prototype.update = function(game, delta, index)
 {
-    var ball = playground[this.side];
-    for(var i = 2; i < playground.length; i++)
+    var ball = null;                                    // Set no target for start
+    for(var i in game.playground)                       // Check with every ball
     {
+        if(game.playground[i].constructor.name !== "Ball")  // ignore, if not a ball
+        {
+            continue;
+        }
+        
         if(this.side === 0)
         {
-            if(ball.y > playground[i].y)
+            if(ball.y > game.playground[i].y)
             {
-                if(playground[i].speedy < 0)
+                if(game.playground[i].speedy < 0)
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];
                 }
             }
         }
         else
         {
-            if(ball.y < playground[i].y)
+            if(ball.y < game.playground[i].y)
             {
-                if(playground[i].speedy > 0)
+                if(game.playground[i].speedy > 0)
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];
                 }
             }
         }
     }
-    if(ball === playground[this.side])
+    if(ball === game.playground[this.side])
     {
-        ball = playground[2];
-        for(var i = 2; i < playground.length; i++)
+        ball = game.playground[2];
+        for(var i = 2; i < game.playground.length; i++)
         {
             if(this.side === 0)
             {
-                if(ball.y < playground[i].y)
+                if(ball.y < game.playground[i].y)
                 {
-                        ball = playground[i];
+                        ball = game.playground[i];
                 }
             }
             else
             {
-                if(ball.y > playground[i].y)
+                if(ball.y > game.playground[i].y)
                 {
-                        ball = playground[i];
+                        ball = game.playground[i];
                 }
             }
         }

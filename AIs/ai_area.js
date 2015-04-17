@@ -1,4 +1,4 @@
-/* global Paddle, context, canvas, keyboard, playground */
+/* global Paddle, canvas */
 
 function AiArea(side)
 {
@@ -9,53 +9,78 @@ function AiArea(side)
 
 AiArea.prototype = Object.create(Paddle.prototype);
 
-AiArea.prototype.update = function(delta)
+AiArea.prototype.update = function(game, delta, index)
 {
-    var ball = playground[this.side];
-    for(var i = 0; i < playground.length; i++)
+    var ball = null;                                    // Set no target for start
+    for(var i in game.playground)                       // Check with every ball
     {
+        if(game.playground[i].constructor.name !== "Ball")  // ignore, if not a ball
+        {
+            continue;
+        }
+        
         if(this.side === 0)
         {
-            if(ball.y > playground[i].y)
+            if(ball === null)                   // if no target          
             {
-                if(playground[i].speedy < 0)
+                ball = game.playground[i];           // that ball is my target
+            }
+            else if(ball.y > game.playground[i].y)
+            {
+                if(game.playground[i].speedy < 0)
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];
                 }
             }
         }
         else
         {
-            if(ball.y < playground[i].y)
+            if(ball === null)                   // if no target          
             {
-                if(playground[i].speedy > 0)
+                ball = game.playground[i];           // that ball is my target
+            }
+            else if(ball.y < game.playground[i].y)
+            {
+                if(game.playground[i].speedy > 0)
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];
                 }
             }
         }
     }
-    if(ball === playground[this.side])
+    if(ball === null)
     {
-        ball = playground[2];
-        for(var i = 0; i < playground.length; i++)
+        for(var i in game.playground)                       // Check with every ball
         {
+            if(game.playground[i].constructor.name !== "Ball")  // ignore, if not a ball
+            {
+                continue;
+            }
             if(this.side === 0)
             {
-                if(ball.y < playground[i].y)
+                if(ball === null)                   // if no target          
                 {
-                        ball = playground[i];
+                    ball = game.playground[i];           // that ball is my target
+                }
+                else if(ball.y < game.playground[i].y)
+                {
+                        ball = game.playground[i];
                 }
             }
             else
             {
-                if(ball.y > playground[i].y)
+                if(ball === null)                   // if no target          
                 {
-                        ball = playground[i];
+                    ball = game.playground[i];           // that ball is my target
+                }
+                else if(ball.y > game.playground[i].y)
+                {
+                        ball = game.playground[i];
                 }
             }
         }
     }
+    
     if(this.x - this.width/3 > ball.x && this.x > this.width/2)
         this.x -= this.speed * delta;
     else if(this.x + this.width/3 < ball.x && this.x < canvas.width - this.width/2)

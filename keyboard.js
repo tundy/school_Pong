@@ -39,7 +39,11 @@ function keyboardClear() {
 document.onkeydown = function(e) {
     //console.log(e.keyCode);
     keyboard[e.keyCode] = true;
-    if((e.keyCode >= 112) && (e.keyCode <= 123))
+    if((e.keyCode >= 112) && (e.keyCode <= 123))    // F1 - F12
+        return true;
+    else if(e.keyCode === 8 || (e.keyCode >= 91 && e.keyCode <= 92) || e.keyCode === 224)   // BackSpace; (Windows Start; Linux Extra; Command Key)
+        return true;
+    else if(keyboard[16] || keyboard[17] || keyboard[18] || keyboard[91] || keyboard[92] || keyboard[224])  // Key ShortCuts
         return true;
     return false;
 };

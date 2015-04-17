@@ -14,7 +14,7 @@ AiAreaMiddleV4.prototype.update = function(game, delta, index)
     var ball = null;                                    // Set no target for start
     for(var i in game.playground)                       // Check with every ball
     {
-        if(game.playground[i].constructor.name !== "Ball")  // ignore, not a ball
+        if(game.playground[i].constructor.name !== "Ball")  // ignore, if not a ball
         {
             continue;
         }

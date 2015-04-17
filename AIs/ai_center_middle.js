@@ -1,4 +1,4 @@
-/* global Paddle, context, canvas, keyboard, playground */
+/* global canvas, Paddle */
 
 function AiCenterMiddle(side)
 {
@@ -9,49 +9,61 @@ function AiCenterMiddle(side)
 
 AiCenterMiddle.prototype = Object.create(Paddle.prototype);
 
-AiCenterMiddle.prototype.update = function(delta)
+AiCenterMiddle.prototype.update = function(game, delta, index)
 {
-    var ball = playground[this.side];
-    for(var i = 2; i < playground.length; i++)
+    var ball = null;                                    // Set no target for start
+    for(var i in game.playground)                       // Check with every ball
     {
-        if(this.side === 0)
+        if(game.playground[i].constructor.name !== "Ball")  // ignore, if not a ball
         {
-            if(ball.y > playground[i].y)
+            continue;
+        }
+        
+        if(this.side === 0)                             // Are you on top ?
+        {
+            if(game.playground[i].speedy < 0)            // is ball moving toward you ?
             {
-                if(playground[i].speedy < 0)
+                if(ball === null)                   // if no target          
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];           // that ball is my target
+                }
+                else if(ball.y > game.playground[i].y)   // is that ball the most close to you ?
+                {
+                    ball = game.playground[i];           // that ball is my target
                 }
             }
         }
-        else
+        else                                // You are on bottom
         {
-            if(ball.y < playground[i].y)
+            if(game.playground[i].speedy > 0)            // is ball moving toward you ?
             {
-                if(playground[i].speedy > 0)
+                if(ball === null)                   // if no target          
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];           // that ball is my target
+                }
+                else if(ball.y < game.playground[i].y)   // is that ball the most close to you ?
+                {
+                    ball = game.playground[i];           // that ball is my target
                 }
             }
         }
     }
-    if(ball === playground[this.side])
-    {
-        if(this.x - this.speed * delta  > canvas.width/2)
-            this.x -= this.speed * delta;
-        else if(this.x + this.speed * delta < canvas.width/2)
-            this.x += this.speed * delta;
+    
+    if(ball === null)                                                   // No ball to follow ?
+    {                                                                       // go to middle
+        if(this.x - this.speed * delta  > canvas.width/2)                       // are you on the right half ?
+            this.x -= this.speed * delta;                                           // go left
+        else if(this.x + this.speed * delta < canvas.width/2)                   // or are you on the left half ?
+            this.x += this.speed * delta;                                           // go right
     }
-    else
+    else                                                                    // follow ball  
     {
-        if(this.x > ball.x && this.x > this.width/2)
-            this.x -= this.speed * delta;
-        else if(this.x < canvas.width - this.width/2)
-            this.x += this.speed * delta;
+        if((this.x > ball.x) && (this.x > this.width/2))                      // is ball is on your left ?
+            this.x -= this.speed * delta;                                                                   // go left
+        else if(this.x < canvas.width - this.width/2)          // or is ball is on your right ?
+            this.x += this.speed * delta;                                                                   // go right
     }
     
-    if(this.x < 0) this.x = this.width/2;
-    else if(this.x > canvas.width) this.x = canvas.width - this.width/2;
-    
-    return false;
+    if(this.x < 0) this.x = this.width/2;                                   // Are you out of canvas ?
+    else if(this.x > canvas.width) this.x = canvas.width - this.width/2;    // force you back
 };

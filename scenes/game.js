@@ -35,7 +35,7 @@ Game.prototype.FindPaddleBottom = function() {
 
 Game.prototype.goal = function() {
     
-    var colours = ["Chocolate", "Coral", "DarkGoldenRod", "DarkKhaki", "Khaki", "LightGoldenRodYellow", "NavajoWhite", "Peru", "SandyBrown", "Wheat"];
+    var colours = ["Chocolate", "Coral", "DarkGoldenRod", "DarkKhaki", "Khaki", "NavajoWhite", "Peru", "SandyBrown", "Wheat"];
     var x = Math.floor(Math.random()*colours.length+0.1);
     var color = colours[x];
     //console.log(color, canvas.style.backgroundColor);
@@ -49,34 +49,70 @@ Game.prototype.goal = function() {
     this.playground = [];
     
     // Top side
-    if(settings[2][0] === "AreaMiddleV3")
-    {
-        this.playground.push(new AiAreaMiddleV3(0));
-    }
-    else if(settings[2][0] === "AreaMiddleFastball")
-    {
-        this.playground.push(new AiAreaMiddleFastball(0));
-    }
-    else
-    {
-        this.playground.push(new Player(0));
+    switch(settings[2][0]) {
+        case "AiCenter":
+            this.playground.push(new AiCenter(0));
+            break;
+        case "AiCenterMiddle":
+            this.playground.push(new AiCenterMiddle(0));
+            break;
+        case "AiArea":
+            this.playground.push(new AiArea(0));
+            break;
+        case "AiAreaMiddle":
+            this.playground.push(new AiAreaMiddle(0));
+            break;
+        case "AiAreaV2":
+            this.playground.push(new AiAreaV2(0));
+            break;
+        case "AiAreaMiddleV2":
+            this.playground.push(new AiAreaMiddleV2(0));
+            break;
+        case "AiAreaMiddleV3":
+            this.playground.push(new AiAreaMiddleV3(0));
+            break;
+        case "AiAreaMiddleFastball":
+            this.playground.push(new AiAreaMiddleFastball(0));
+            break;
+        default:
+            this.playground.push(new Player(0));
+            break;
     }
     
     // Bottom side
-    if(settings[2][1] === "AreaMiddleV3")
-    {
-        this.playground.push(new AiAreaMiddleV3(1));
-    }
-    else if(settings[2][1] === "AreaMiddleFastball")
-    {
-        this.playground.push(new AiAreaMiddleFastball(1));
-    }
-    else
-    {
-        this.playground.push(new Player(1));
+    switch(settings[2][1]) {
+        case "AiCenter":
+            this.playground.push(new AiCenter(1));
+            break;
+        case "AiCenterMiddle":
+            this.playground.push(new AiCenterMiddle(1));
+            break;
+        case "AiArea":
+            this.playground.push(new AiArea(1));
+            break;
+        case "AiAreaMiddle":
+            this.playground.push(new AiAreaMiddle(1));
+            break;
+        case "AiAreaV2":
+            this.playground.push(new AiAreaV2(1));
+            break;
+        case "AiAreaMiddleV2":
+            this.playground.push(new AiAreaMiddleV2(1));
+            break;
+        case "AiAreaMiddleV3":
+            this.playground.push(new AiAreaMiddleV3(1));
+            break;
+        case "AiAreaMiddleFastball":
+            this.playground.push(new AiAreaMiddleFastball(1));
+            break;
+        default:
+            this.playground.push(new Player(1));
+            break;
     }
     
     this.playground.push(new Ball(canvas.width/2, canvas.height/2));
+    //this.playground.push(new Ball(canvas.width/2, canvas.height/2+50));
+    //this.playground.push(new Ball(canvas.width/2, canvas.height/2-50));
 };
 
 Game.prototype.update = function(delta) {
@@ -123,10 +159,12 @@ Game.prototype.draw = function() {
         if(this.ScoreUp > this.ScoreDown)
         {
             context.fillText("Top side won", 10, canvas.height/2);
+            context.fillText(this.ScoreUp + " : " + this.ScoreDown, 10, canvas.height/2 + 25);
         }
         else
         {
             context.fillText("Bottom side won", 10, canvas.height/2);
+            context.fillText(this.ScoreUp + " : " + this.ScoreDown, 10, canvas.height/2 + 25);
         }
         return;
     }

@@ -1,4 +1,4 @@
-/* global Paddle, context, canvas, keyboard, playground */
+/* global canvas, Paddle */
 
 function AiAreaMiddle(side)
 {
@@ -9,33 +9,38 @@ function AiAreaMiddle(side)
 
 AiAreaMiddle.prototype = Object.create(Paddle.prototype);
 
-AiAreaMiddle.prototype.update = function(delta)
+AiAreaMiddle.prototype.update = function(game, delta, index)
 {
-    var ball = playground[this.side];
-    for(var i = 2; i < playground.length; i++)
+    var ball = null;                                    // Set no target for start
+    for(var i in game.playground)                       // Check with every ball
     {
+        if(game.playground[i].constructor.name !== "Ball")  // ignore, if not a ball
+        {
+            continue;
+        }
+        
         if(this.side === 0)
         {
-            if(ball.y > playground[i].y)
+            if(ball.y > game.playground[i].y)
             {
-                if(playground[i].speedy < 0)
+                if(game.playground[i].speedy < 0)
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];
                 }
             }
         }
         else
         {
-            if(ball.y < playground[i].y)
+            if(ball.y < game.playground[i].y)
             {
-                if(playground[i].speedy > 0)
+                if(game.playground[i].speedy > 0)
                 {
-                    ball = playground[i];
+                    ball = game.playground[i];
                 }
             }
         }
     }
-    if(ball === playground[this.side])
+    if(ball === null)
     {
         if(this.x - this.speed * delta  > canvas.width/2)
             this.x -= this.speed * delta;

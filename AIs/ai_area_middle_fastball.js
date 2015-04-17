@@ -15,7 +15,7 @@ AiAreaMiddleFastball.prototype.update = function(game, delta, index)
     var time = 0;
     for(var i in game.playground)                       // Check with every ball
     {
-        if(game.playground[i].constructor.name !== "Ball")  // ignore, not a ball
+        if(game.playground[i].constructor.name !== "Ball")  // ignore, if not a ball
         {
             continue;
         }
@@ -28,11 +28,13 @@ AiAreaMiddleFastball.prototype.update = function(game, delta, index)
                     if(ball === null)                   // if no target          
                     {
                         ball = game.playground[i];           // that ball is my target
-                        time = game.playground[i].speedy / (game.playground[i].y - this.y);
+                        time = game.playground[i].speedy / (game.playground[i].y - canvas.height);
+                        //console.log(i, time);
                     }
                     else                                    // Which ball will be first to goal ?
                     {
-                        var now = game.playground[i].speedy / (game.playground[i].y - this.y);
+                        var now = game.playground[i].speedy / (game.playground[i].y - canvas.height);
+                        //console.log(i, now);
                         if(now < time) {
                             ball = game.playground[i];           // that ball is my target
                         }
@@ -42,18 +44,20 @@ AiAreaMiddleFastball.prototype.update = function(game, delta, index)
         }
         else                                            // You are on bottom
         {
-            if(game.playground[i].y + game.playground[i].speedy  >= canvas.height*2/3)      // is ball on your half ?
+            if(game.playground[i].y + game.playground[i].speedy  >= canvas.height*1/3)      // is ball on your half ?
             {
                 if(game.playground[i].speedy > 0)            // is ball moving toward you ?
                 {
                     if(ball === null)                   // if no target
                     {
                         ball = game.playground[i];           // that ball is my target
-                        time = game.playground[i].speedy / (this.y - game.playground[i].y);
+                        time = game.playground[i].speedy / (game.playground[i].y);
+                        //console.log(i, time);
                     }
                     else                                    // Which ball will be first to goal ?
                     {
-                        var now = game.playground[i].speedy / (this.y - game.playground[i].y);
+                        var now = game.playground[i].speedy / (game.playground[i].y);
+                        //console.log(i, now);
                         if(now < time) {
                             ball = game.playground[i];           // that ball is my target
                         }

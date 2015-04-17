@@ -59,7 +59,7 @@ Ball.prototype.update = function(game, delta, index)
                     {
                         if(this.x > paddleBottom.x + paddleBottom.width/4)
                         {
-                            if(Math.abs(this.speedx) < 45) {
+                            if(Math.abs(this.speedx) < 50) {
                             var x = (this.x - paddleBottom.x)/paddleBottom.width/2 + 1;
                             //console.log("rychlost X zvysena o " + (x-1)*Math.abs(this.speedx));
                             this.speedx *= x;
@@ -67,7 +67,7 @@ Ball.prototype.update = function(game, delta, index)
                         }
                         else if (this.x < paddleBottom.x - paddleBottom.width/4)
                         {
-                            if(Math.abs(this.speedx) < 45) {
+                            if(Math.abs(this.speedx) < 50) {
                             var x = (paddleBottom.x - this.x)/paddleBottom.width/2 + 1;
                             //console.log("rychlost X zvysena o " + (x-1)*Math.abs(this.speedx));
                             this.speedx *= x;
@@ -93,7 +93,7 @@ Ball.prototype.update = function(game, delta, index)
                             //console.log("rychlost X znizena o " + (x)*Math.abs(this.speedx));
                             this.speedx *= x;
                         }
-                        if(Math.abs(this.speedy) < 45) {
+                        if(Math.abs(this.speedy) < 50) {
                             this.speedy *= 1.05;
                         }
                     }
@@ -129,7 +129,7 @@ Ball.prototype.update = function(game, delta, index)
                     {
                         if(this.x > paddleTop.x + paddleTop.width/4)
                         {
-                            if(Math.abs(this.speedx) < 45) {
+                            if(Math.abs(this.speedx) < 50) {
                             var x = (this.x - paddleTop.x)/paddleTop.width/2 + 1;
                             //console.log("rychlost X zvysena o " + (x-1)*Math.abs(this.speedx));
                             this.speedx *= x;
@@ -137,7 +137,7 @@ Ball.prototype.update = function(game, delta, index)
                         }
                         else if (this.x < paddleTop.x - paddleTop.width/4)
                         {
-                            if(Math.abs(this.speedx) < 45) {
+                            if(Math.abs(this.speedx) < 50) {
                             var x = (paddleTop.x - this.x)/paddleTop.width/2 + 1;
                             //console.log("rychlost X zvysena o " + (x-1)*Math.abs(this.speedx));
                             this.speedx *= x;
@@ -163,7 +163,7 @@ Ball.prototype.update = function(game, delta, index)
                             //console.log("rychlost X znizena o " + (x)*Math.abs(this.speedx));
                             this.speedx *= x;
                         }
-                        if(Math.abs(this.speedy) < 45) {
+                        if(Math.abs(this.speedy) < 50) {
                             this.speedy *= 1.05;
                         }
                     }
